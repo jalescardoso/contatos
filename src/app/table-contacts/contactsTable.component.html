@@ -1,42 +1,47 @@
 <div class="example-container mat-elevation-z8">
-  <md-table #table [dataSource]="dataSource">
+  <md-table #table [dataSource]="dataSource" mdSort>
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
 
     <ng-container mdColumnDef="Foto">
-      <md-header-cell style="flex: 0 0 75px;" *mdHeaderCellDef> Foto </md-header-cell>
-      <md-cell style="flex: 0 0 75px;" *mdCellDef="let element"> <img style="border-radius: 50%;" src='{{element.foto}}'/> </md-cell>
+      <md-header-cell *mdHeaderCellDef> Foto </md-header-cell>
+      <md-cell *mdCellDef="let element"> <img style="border-radius: 50%;" src='{{element.foto}}' /> </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Nome">
-      <md-header-cell *mdHeaderCellDef> Nome </md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header> Nome </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.nome}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Email">
-      <md-header-cell *mdHeaderCellDef> Email </md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header> Email </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.email}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Endereco">
-      <md-header-cell *mdHeaderCellDef> Endereço </md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header> Endereço </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.endereco}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Telefone">
-      <md-header-cell *mdHeaderCellDef> Telefone </md-header-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header> Telefone </md-header-cell>
       <md-cell *mdCellDef="let element"> {{element.telefone}} </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Nascimento">
-      <md-header-cell *mdHeaderCellDef> Nascimento </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.nascimento}} </md-cell>
+      <md-header-cell *mdHeaderCellDef md-sort-header> Nascimento </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.nascimento | date:'dd/MM/yyyy'}} </md-cell>
     </ng-container>
 
-    <ng-container mdColumnDef="Cadastro">
-      <md-header-cell *mdHeaderCellDef> Cadastrado em </md-header-cell>
-      <md-cell *mdCellDef="let element"> {{element.cadastrado}} </md-cell>
+    <ng-container mdColumnDef="Cadastrado">
+      <md-header-cell *mdHeaderCellDef md-sort-header> Cadastrado em </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.cadastrado | date:'dd/MM/yyyy'}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Acoes">
+      <md-header-cell *mdHeaderCellDef> Ações </md-header-cell>
+      <md-cell *mdCellDef="let element"> <i class="material-icons">mode_edit</i> &nbsp;<i class="material-icons">delete_sweep</i></md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
