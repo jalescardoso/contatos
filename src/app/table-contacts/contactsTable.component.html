@@ -1,12 +1,9 @@
 <div class="example-container mat-elevation-z8">
   <md-table #table [dataSource]="dataSource" mdSort>
 
-    <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
     <ng-container mdColumnDef="Foto">
       <md-header-cell *mdHeaderCellDef> Foto </md-header-cell>
-      <md-cell *mdCellDef="let element"> <img style="border-radius: 50%;" src='{{element.foto}}' /> </md-cell>
+      <md-cell *mdCellDef="let element"> <img height="50" style="border-radius: 50%;object-fit: cover;" src='{{element.foto}}' /> </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Nome">
@@ -47,6 +44,9 @@
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
     <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
-  <md-paginator #paginator [length]="contacts.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  <md-paginator #paginator 
+    [length]="contacts.length" 
+    [pageIndex]="0" [pageSize]="5" 
+    [pageSizeOptions]="[5, 10, 25, 100]">
   </md-paginator>
 </div>

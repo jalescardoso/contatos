@@ -12,16 +12,16 @@ import contacts from '../../mock/contacts';
 })
 export class ContatosComponent {
   displayedColumns = ['Foto', 'Nome', 'Email', 'Endereco', 'Telefone', 'Nascimento', 'Cadastrado', 'Acoes'];
-  dataSource: ExampleDataSource | null;
+  dataSource: myDataSource | null;
   contacts = contacts;
   @ViewChild(MdPaginator) paginator: MdPaginator;
   @ViewChild(MdSort) sort: MdSort;
   ngOnInit() {
-    this.dataSource = new ExampleDataSource(this.paginator, this.sort);
+    this.dataSource = new myDataSource(this.paginator, this.sort);
   }
 }
 
-export class ExampleDataSource extends DataSource<any> {
+export class myDataSource extends DataSource<any> {
   constructor(private _paginator: MdPaginator, private _sort: MdSort) {
     super();
   }
@@ -33,25 +33,23 @@ export class ExampleDataSource extends DataSource<any> {
       this._paginator.page,
       this._sort.mdSortChange,
     ];
-
     return Observable.merge(...displayDataChanges).map(() => {
       let data = contacts.map(x => {
         return {
           foto: x.picture.thumbnail,
-          nome: `${x.name.first} ${x.name.last}`,
-          endereco: `${x.location.city} ${x.location.state.toUpperCase()}`,
+          nome: `${x.name.first.upFirstLetter()} ${x.name.last.upFirstLetter()}`,
+          endereco: `${x.location.city.upFirstLetter()} ${x.location.state.toUpperCase()}`,
           telefone: x.phone,
           nascimento: x.dob,
           email: x.email,
           cadastrado: x.registered
         }
       }).slice();
-
       let compare = (a, b, isAsc) => {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
       }
       if (this._sort.active && this._sort.direction !== '') {
-        let teste = data.sort((a, b) => {
+        data = data.sort((a, b) => {
           let isAsc = this._sort.direction == 'asc';
           switch (this._sort.active) {
             case 'Nome': return compare(a.nome, b.nome, isAsc);
@@ -63,11 +61,7 @@ export class ExampleDataSource extends DataSource<any> {
             default: return 0;
           }
         });
-
-        data = teste;
       }
-
-      // Grab the page's slice of data.
       const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
       return data.splice(startIndex, this._paginator.pageSize);
     });

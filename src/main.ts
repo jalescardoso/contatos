@@ -12,3 +12,14 @@ if (environment.production) {
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.log(err));
+
+declare global {
+  interface String {
+    upFirstLetter: () => any;
+  }
+}
+if (!String.prototype.upFirstLetter) {
+  String.prototype.upFirstLetter = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1).toLowerCase();
+  }
+}
