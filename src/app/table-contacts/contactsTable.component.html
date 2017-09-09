@@ -1,0 +1,47 @@
+<div class="example-container mat-elevation-z8">
+  <md-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container mdColumnDef="Foto">
+      <md-header-cell style="flex: 0 0 75px;" *mdHeaderCellDef> Foto </md-header-cell>
+      <md-cell style="flex: 0 0 75px;" *mdCellDef="let element"> <img style="border-radius: 50%;" src='{{element.foto}}'/> </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Nome">
+      <md-header-cell *mdHeaderCellDef> Nome </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.nome}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Email">
+      <md-header-cell *mdHeaderCellDef> Email </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.email}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Endereco">
+      <md-header-cell *mdHeaderCellDef> Endereço </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.endereco}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Telefone">
+      <md-header-cell *mdHeaderCellDef> Telefone </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.telefone}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Nascimento">
+      <md-header-cell *mdHeaderCellDef> Nascimento </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.nascimento}} </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="Cadastro">
+      <md-header-cell *mdHeaderCellDef> Cadastrado em </md-header-cell>
+      <md-cell *mdCellDef="let element"> {{element.cadastrado}} </md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+  <md-paginator #paginator [length]="contacts.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
+  </md-paginator>
+</div>
