@@ -1,21 +1,19 @@
 <h1 md-dialog-title>Contato</h1>
 <div md-dialog-content>
   <form class="example-form">
-
     <div class="boximg" (click)='inputFile.nativeElement.click()'>
       <input #imageInput type="file" (change)="changeImage($event)" hidden/>
-      <img class="picture" src='{{data.picture || "assets/contact.png"}}' />
+      <img class="picture" src='{{contactService.contact.foto || "assets/contact.png"}}' />
       <span class="changeImg">Alterar</span>
     </div>
-
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="nome" [formControl]="nomeFC">
+      <input mdInput [(ngModel)]="contactService.contact.nome" placeholder="Nome" [formControl]="nomeFC">
       <md-error *ngIf="nomeFC.hasError('required')">
         Email is <strong>required</strong>
       </md-error>
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Email" [formControl]="emailFC">
+      <input mdInput [(ngModel)]="contactService.contact.email" placeholder="Email" [formControl]="emailFC">
       <md-error *ngIf="emailFC.hasError('pattern')">
         Please enter a valid email address
       </md-error>
@@ -24,20 +22,28 @@
       </md-error>
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Telefone" [formControl]="telefoneFC">
+      <input mdInput [(ngModel)]="contactService.contact.telefone" placeholder="Telefone" [formControl]="telefoneFC">
       <md-error *ngIf="telefoneFC.hasError('required')">
         Email is <strong>required</strong>
       </md-error>
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input mdInput placeholder="Endereço" [formControl]="enderecoFC">
+      <input mdInput [(ngModel)]="contactService.contact.endereco" placeholder="Endereço" [formControl]="enderecoFC">
       <md-error *ngIf="enderecoFC.hasError('required')">
+        Email is <strong>required</strong>
+      </md-error>
+    </md-form-field>
+    <md-form-field class="example-full-width">
+      <input mdInput [mdDatepicker]="picker" [(ngModel)]="contactService.contact.nascimento" placeholder="Choose a date" [formControl]="DNFC">
+      <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+      <md-datepicker #picker></md-datepicker>
+      <md-error *ngIf="DNFC.hasError('required')">
         Email is <strong>required</strong>
       </md-error>
     </md-form-field>
   </form>
 </div>
 <div md-dialog-actions>
-  <button md-button [md-dialog-close]="data.animal" tabindex="2">Ok</button>
-  <button md-button (click)="onNoClick()" tabindex="-1">No Thanks</button>
+  <button (click)='salvar(contactService.contact)' md-raised-button color="primary" tabindex="2" [disabled]="!isValidForm()">Salvar</button>
+  <button md-button (click)="cancel()" tabindex="-1">Cancelar</button>
 </div>

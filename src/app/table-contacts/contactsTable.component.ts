@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import contacts from '../../mock/contacts';
 import { ContatoDialogComponent } from '../dialog-contact/contactDialog.component';
+import { ContactService } from '../contact.service.service';
 
 @Component({
   selector: 'contacts-table',
@@ -12,14 +13,14 @@ import { ContatoDialogComponent } from '../dialog-contact/contactDialog.componen
   templateUrl: 'contactsTable.component.html',
 })
 export class ContatosComponent {
-  constructor(public dialog: MdDialog) { }
+  constructor(public dialog: MdDialog, public contactService: ContactService) { }
   displayedColumns = ['Foto', 'Nome', 'Email', 'Endereco', 'Telefone', 'Nascimento', 'Cadastrado', 'Acoes'];
   dataSource: myDataSource | null;
   contacts = contacts;
   @ViewChild(MdPaginator) paginator: MdPaginator;
   @ViewChild(MdSort) sort: MdSort;
   ngOnInit() {
-    this.dataSource = new myDataSource(this.paginator, this.sort);
+    this.dataSource = new myDataSource(this.paginator, this.sort, this.contactService);
   }
 
   openDialog() {
@@ -28,7 +29,7 @@ export class ContatosComponent {
 }
 
 export class myDataSource extends DataSource<any> {
-  constructor(private _paginator: MdPaginator, private _sort: MdSort) {
+  constructor(private _paginator: MdPaginator, private _sort: MdSort, public contactService: ContactService) {
     super();
   }
 
@@ -39,20 +40,10 @@ export class myDataSource extends DataSource<any> {
       this._sort.mdSortChange,
     ];
     return Observable.merge(...displayDataChanges).map(() => {
-      let data = contacts.map(x => {
-        return {
-          foto: x.picture.thumbnail,
-          nome: `${x.name.first.upFirstLetter()} ${x.name.last.upFirstLetter()}`,
-          endereco: `${x.location.city.upFirstLetter()} ${x.location.state.toUpperCase()}`,
-          telefone: x.phone,
-          nascimento: x.dob,
-          email: x.email,
-          cadastrado: x.registered
-        }
-      }).slice();
       let compare = (a, b, isAsc) => {
         return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
       }
+      let data = contacts.slice();
       if (this._sort.active && this._sort.direction !== '') {
         data = data.sort((a, b) => {
           let isAsc = this._sort.direction == 'asc';

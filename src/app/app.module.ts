@@ -4,12 +4,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MdToolbarModule, MdTableModule, MdPaginatorModule, MdSortModule,
-  MdButtonModule, MdDialogModule, MdInputModule
+  MdButtonModule, MdDialogModule, MdInputModule, MdDatepickerModule, MdNativeDateModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { ContatosComponent } from './table-contacts/contactsTable.component';
 import { ContatoDialogComponent } from './dialog-contact/contactDialog.component';
+import { ContactService } from './contact.service.service';
 
 @NgModule({
   declarations: [
@@ -28,9 +29,9 @@ import { ContatoDialogComponent } from './dialog-contact/contactDialog.component
     MdButtonModule,
     MdDialogModule,
     FormsModule,
-    ReactiveFormsModule, MdInputModule
+    ReactiveFormsModule, MdInputModule, MdDatepickerModule,MdNativeDateModule
   ],
-  providers: [],
+  providers: [ContactService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
