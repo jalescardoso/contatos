@@ -26,8 +26,13 @@ export class ContatoDialogComponent {
   @ViewChild('imageInput') inputFile: ElementRef;
 
   cancel = () => this.dialogRef.close();
+  isNew = false;
 
-  async changeImage(e) {
+  ngOnInit() {
+    if (!this.contactService.contact.nome) this.isNew = true;
+  }
+
+  changeImage(e) {
     let fr = new FileReader();
     new Promise(resolve => fr.onload = resolve)
       .then(() => {
@@ -37,6 +42,11 @@ export class ContatoDialogComponent {
   }
 
   salvar(contact) {
+    if (this.isNew) {
+      contact.cadastrado = new Date();
+      contacts.unshift(contact);
+      this.contactService.updateTable.emit();
+    }
     this.dialogRef.close();
   }
 

@@ -7,6 +7,7 @@ import 'rxjs/Rx';
 export class ContactService {
   constructor() { }
   public contact;
+  public updateTable = new EventEmitter();
 
   public selectContact = (contact) => {
     if (contact.nascimento)

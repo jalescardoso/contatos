@@ -24,7 +24,15 @@ export class ContatosComponent {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(ContatoDialogComponent);
+    this.dialog.open(ContatoDialogComponent);
+  }
+
+  remove(el) {
+    let index = contacts.indexOf(el);
+    if (index > -1) {
+      contacts.splice(index, 1);
+      this.contactService.updateTable.emit();
+    }
   }
 }
 
@@ -35,6 +43,7 @@ export class myDataSource extends DataSource<any> {
 
   connect(): Observable<any[]> {
     const displayDataChanges = [
+      this.contactService.updateTable,
       contacts,
       this._paginator.page,
       this._sort.mdSortChange,
@@ -48,11 +57,11 @@ export class myDataSource extends DataSource<any> {
         data = data.sort((a, b) => {
           let isAsc = this._sort.direction == 'asc';
           switch (this._sort.active) {
-            case 'Nome': return compare(a.nome, b.nome, isAsc);
-            case 'Endereco': return compare(a.endereco, b.endereco, isAsc);
+            case 'Nome': return compare(a.nome.toLocaleLowerCase(), b.nome.toLocaleLowerCase(), isAsc);
+            case 'Endereco': return compare(a.endereco.toLocaleLowerCase(), b.endereco.toLocaleLowerCase(), isAsc);
             case 'Telefone': return compare(a.telefone, b.telefone, isAsc);
             case 'Nascimento': return compare(new Date(a.nascimento), new Date(b.nascimento), isAsc);
-            case 'Email': return compare(a.email, b.email, isAsc);
+            case 'Email': return compare(a.email.toLocaleLowerCase(), b.email.toLocaleLowerCase(), isAsc);
             case 'Cadastrado': return compare(new Date(a.cadastrado), new Date(b.cadastrado), isAsc);
             default: return 0;
           }

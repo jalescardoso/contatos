@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -29,9 +29,9 @@ import { ContactService } from './contact.service.service';
     MdButtonModule,
     MdDialogModule,
     FormsModule,
-    ReactiveFormsModule, MdInputModule, MdDatepickerModule,MdNativeDateModule
+    ReactiveFormsModule, MdInputModule, MdDatepickerModule, MdNativeDateModule
   ],
-  providers: [ContactService],
+  providers: [ContactService, { provide: LOCALE_ID, useValue: 'pt-BR' },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

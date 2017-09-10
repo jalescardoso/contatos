@@ -1,5 +1,9 @@
 <md-toolbar color="primary">
   <span>Contatos</span>
+  <span class="example-spacer"></span>
+  <md-icon class="example-icon material-icons">account_circle</md-icon>
+  <!-- <md-icon class="example-icon">delete</md-icon> -->
+  <button class="example-icon" (click)='contactService.selectContact({});openDialog()' md-raised-button color="primary">Adicionar</button>
 </md-toolbar>
 
 <contacts-table></contacts-table>
