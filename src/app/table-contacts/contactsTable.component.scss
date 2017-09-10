@@ -36,3 +36,21 @@
 .mat-header-cell .mat-sort-header-sorted {
   color: black;
 }
+
+.res768 {
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.res700{
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+}
+
+.res400{
+  @media screen and (max-width: 400px) {
+    display: none;
+  }
+}

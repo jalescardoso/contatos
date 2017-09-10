@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
-import { MdPaginator, MdSort } from '@angular/material';
+import { MdPaginator, MdSort, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import contacts from '../../mock/contacts';
+import { ContatoDialogComponent } from '../dialog-contact/contactDialog.component';
 
 @Component({
   selector: 'contacts-table',
@@ -11,6 +12,7 @@ import contacts from '../../mock/contacts';
   templateUrl: 'contactsTable.component.html',
 })
 export class ContatosComponent {
+  constructor(public dialog: MdDialog) { }
   displayedColumns = ['Foto', 'Nome', 'Email', 'Endereco', 'Telefone', 'Nascimento', 'Cadastrado', 'Acoes'];
   dataSource: myDataSource | null;
   contacts = contacts;
@@ -19,6 +21,10 @@ export class ContatosComponent {
   ngOnInit() {
     this.dataSource = new myDataSource(this.paginator, this.sort);
   }
+
+  openDialog() {
+    let dialogRef = this.dialog.open(ContatoDialogComponent);
+  }
 }
 
 export class myDataSource extends DataSource<any> {
@@ -26,7 +32,6 @@ export class myDataSource extends DataSource<any> {
     super();
   }
 
-  /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<any[]> {
     const displayDataChanges = [
       contacts,

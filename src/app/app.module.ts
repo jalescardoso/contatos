@@ -1,23 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdToolbarModule, MdTableModule, MdPaginatorModule, MdSortModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  MdToolbarModule, MdTableModule, MdPaginatorModule, MdSortModule,
+  MdButtonModule, MdDialogModule, MdInputModule
+} from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { ContatosComponent } from './table-contacts/contactsTable.component'
+import { ContatosComponent } from './table-contacts/contactsTable.component';
+import { ContatoDialogComponent } from './dialog-contact/contactDialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ContatosComponent
+    ContatosComponent,
+    ContatoDialogComponent
   ],
+  entryComponents: [ContatoDialogComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MdToolbarModule,
     MdTableModule,
     MdPaginatorModule,
-    MdSortModule
+    MdSortModule,
+    MdButtonModule,
+    MdDialogModule,
+    FormsModule,
+    ReactiveFormsModule, MdInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

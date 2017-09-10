@@ -1,0 +1,54 @@
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+	width: 100%;
+}
+
+.picture {
+  object-fit: cover;
+  width: 70px;
+  height: 70px;
+  background-color: white;
+}
+
+.changeImg {
+  background: rgba(78, 144, 254, .7);
+  bottom: 0;
+  color: #fff;
+  font-size: 9px;
+  font-weight: bold;
+  margin-left: -47%;
+  position: absolute;
+  padding: 7px 0;
+  text-align: center;
+  width: 66px;
+  opacity: 0;
+  transition: .5s ease;
+}
+
+.boximg {
+  // border: 0.1px solid black;
+  text-align: center;
+  margin: auto;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  &:hover {
+      .changeImg {
+          opacity: 1;
+      }
+  }
+  @media screen and (max-width: 768px) {
+      .changeImg {
+          opacity: 1;
+      }
+  }
+}
+
