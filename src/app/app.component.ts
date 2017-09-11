@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { ContactService } from './contact.service.service';
-import { MdPaginator, MdSort, MdDialog } from '@angular/material';
-import { ContatoDialogComponent } from './dialog-contact/contactDialog.component';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +6,8 @@ import { ContatoDialogComponent } from './dialog-contact/contactDialog.component
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public dialog: MdDialog, public contactService: ContactService) { }
+  constructor() { }
   
-  openDialog() {
-    this.dialog.open(ContatoDialogComponent);
-  }
+  
 
 }

@@ -1,0 +1,13 @@
+<md-toolbar color="primary">
+  <span>Contatos</span>
+  <span class="example-spacer"></span>
+  <button md-button [mdMenuTriggerFor]="menu">{{localStorage.getItem('token')}} <md-icon class="example-icon material-icons">account_circle</md-icon></button>
+  <md-menu #menu="mdMenu" yPosition="above" xPosition='before' [overlapTrigger]="false">
+    <button md-menu-item (click)='sair()'>Sair</button>
+  </md-menu>
+  
+  <!-- <md-icon class="example-icon">delete</md-icon> -->
+  <button class="example-icon" (click)='contactService.selectContact({});openDialog()' md-raised-button color="primary">Adicionar</button>
+</md-toolbar>
+
+<contacts-table></contacts-table>
