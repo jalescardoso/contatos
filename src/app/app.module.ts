@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { MdSlideToggleModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
+import { DetailContactComponent } from './detail-contact/detail-contact.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MdMenuModule } from '@angular/material';
     ContatosComponent,
     ContatoDialogComponent,
     ContactComponent,
-    LoginComponent
+    LoginComponent,
+    DetailContactComponent
   ],
   entryComponents: [ContatoDialogComponent],
   imports: [

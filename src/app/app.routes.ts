@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
+import { DetailContactComponent } from './detail-contact/detail-contact.component';
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -21,6 +22,10 @@ const appRoutes: Routes = [
 	{
 		path: 'contacts',
 		component: ContactComponent,
+		canActivate: [LoginGuard]
+	},{
+		path: 'contacts/detail',
+		component: DetailContactComponent,
 		canActivate: [LoginGuard]
 	}, {
 		path: 'login',

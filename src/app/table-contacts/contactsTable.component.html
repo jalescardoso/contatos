@@ -41,7 +41,7 @@
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
-    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    <md-row (click)='detail(row)' *mdRowDef="let row; columns: displayedColumns;"></md-row>
   </md-table>
   <md-paginator #paginator [length]="contacts.length" [pageIndex]="0" [pageSize]="5" [pageSizeOptions]="[5, 10, 25, 100]">
   </md-paginator>

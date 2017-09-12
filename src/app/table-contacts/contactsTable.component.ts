@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MdPaginator, MdSort, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router'
 import 'rxjs/Rx';
 import contacts from '../../mock/contacts';
 import { ContatoDialogComponent } from '../dialog-contact/contactDialog.component';
@@ -13,7 +14,7 @@ import { ContactService } from '../contact.service.service';
   templateUrl: 'contactsTable.component.html',
 })
 export class ContatosComponent {
-  constructor(public dialog: MdDialog, public contactService: ContactService) { }
+  constructor(public dialog: MdDialog, public contactService: ContactService, private router: Router) { }
   displayedColumns = ['Foto', 'Nome', 'Email', 'Endereco', 'Telefone', 'Nascimento', 'Cadastrado', 'Acoes'];
   dataSource: myDataSource | null;
   contacts = contacts;
@@ -33,6 +34,11 @@ export class ContatosComponent {
       contacts.splice(index, 1);
       this.contactService.updateTable.emit();
     }
+  }
+
+  detail(row) {
+    this.contactService.selectContact(row);
+    this.router.navigate([`contact/detail`]);
   }
 }
 

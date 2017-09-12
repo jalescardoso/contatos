@@ -1,0 +1,40 @@
+<div class="boximg" (click)='inputFile.nativeElement.click()'>
+  <input #imageInput type="file" (change)="changeImage($event)" hidden/>
+  <img class="picture" src='{{contactService.contact.foto || "assets/contact.png"}}' />
+  <span class="changeImg">Alterar</span>
+</div>
+<md-form-field class="example-full-width">
+  <input mdInput [(ngModel)]="contactService.contact.nome" placeholder="Nome" [formControl]="nomeFC">
+  <md-error *ngIf="nomeFC.hasError('required')">
+    Campo obrigatório
+  </md-error>
+</md-form-field>
+<md-form-field class="example-full-width">
+  <input mdInput [(ngModel)]="contactService.contact.email" placeholder="Email" [formControl]="emailFC">
+  <md-error *ngIf="emailFC.hasError('pattern')">
+    Please enter a valid email address
+  </md-error>
+  <md-error *ngIf="emailFC.hasError('required')">
+    Campo obrigatório
+  </md-error>
+</md-form-field>
+<md-form-field class="example-full-width">
+  <input mdInput [(ngModel)]="contactService.contact.telefone" placeholder="Telefone" [formControl]="telefoneFC">
+  <md-error *ngIf="telefoneFC.hasError('required')">
+    Campo obrigatório
+  </md-error>
+</md-form-field>
+<md-form-field class="example-full-width">
+  <input mdInput [(ngModel)]="contactService.contact.endereco" placeholder="Endereço" [formControl]="enderecoFC">
+  <md-error *ngIf="enderecoFC.hasError('required')">
+    Campo obrigatório
+  </md-error>
+</md-form-field>
+<md-form-field class="example-full-width">
+  <input mdInput [mdDatepicker]="picker" [(ngModel)]="contactService.contact.nascimento" placeholder="Data de nascimento" [formControl]="DNFC">
+  <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+  <md-datepicker #picker></md-datepicker>
+  <md-error *ngIf="DNFC.hasError('required')">
+    Campo obrigatório
+  </md-error>
+</md-form-field>

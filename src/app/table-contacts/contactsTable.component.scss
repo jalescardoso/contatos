@@ -1,9 +1,13 @@
-.mat-column-Foto,.mat-column-Acoes {
+.mat-column-Foto{
   max-width: 75px;
 }
 
-.mat-column-Nome,.mat-column-Nascimento,.mat-column-Cadastrado,.mat-column-Telefone {
+.mat-column-Nome,.mat-column-Nascimento,.mat-column-Cadastrado,.mat-column-Telefone,.mat-column-Acoes  {
   max-width: 150px;
+}
+
+md-row{
+  cursor: pointer;
 }
 
 .example-container {
