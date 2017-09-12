@@ -15,7 +15,8 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
   templateUrl: 'contactDialog.component.html',
 })
 export class ContatoDialogComponent {
-  constructor(public dialogRef: MdDialogRef<any>, public contactService: ContactService) { }
+  public dialogRef: MdDialogRef<any>;
+  constructor(public dialog: MdDialogRef<any>, public contactService: ContactService) { }
 
   emailFC = new FormControl('', [Validators.required, Validators.pattern(EMAIL_REGEX)]);
   nomeFC = new FormControl('', Validators.required);
@@ -25,7 +26,7 @@ export class ContatoDialogComponent {
 
   @ViewChild('imageInput') inputFile: ElementRef;
 
-  cancel = () => this.dialogRef.close();
+  cancel = () => this.dialog.close();
   isNew = false;
 
   ngOnInit() {

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MdPaginator, MdSort, MdDialog } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import 'rxjs/Rx';
 import contacts from '../../mock/contacts';
 import { ContatoDialogComponent } from '../dialog-contact/contactDialog.component';
@@ -38,7 +38,7 @@ export class ContatosComponent {
 
   detail(row) {
     this.contactService.selectContact(row);
-    this.router.navigate([`contact/detail`]);
+    this.router.navigate([`contacts/detail`]);
   }
 }
 

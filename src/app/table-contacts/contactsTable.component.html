@@ -37,7 +37,7 @@
 
     <ng-container mdColumnDef="Acoes">
       <md-header-cell class="res400" *mdHeaderCellDef> Ações </md-header-cell>
-      <md-cell class="res400" *mdCellDef="let element"> <i class="material-icons" (click)='contactService.selectContact(element);openDialog()'>mode_edit</i> &nbsp;<i class="material-icons" (click)='remove(element)'>delete_sweep</i></md-cell>
+      <md-cell class="res400" *mdCellDef="let element"> <i class="material-icons" (click)='contactService.selectContact(element);openDialog();$event.stopPropagation()'>mode_edit</i> &nbsp;<i class="material-icons" (click)='remove(element);$event.stopPropagation()'>delete_sweep</i></md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
