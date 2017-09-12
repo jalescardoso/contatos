@@ -1,5 +1,5 @@
 # Contatos
-
+[![Build Status](https://semaphoreci.com/api/v1/jalescardoso/gerenciadorcontatos/branches/master/badge.svg)](https://semaphoreci.com/jalescardoso/gerenciadorcontatos)
 Projeto desenvolvido para a seguinte [tarefa](./tarefa.md).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.1.
