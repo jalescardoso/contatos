@@ -3,7 +3,7 @@
 
     <ng-container mdColumnDef="Foto">
       <md-header-cell *mdHeaderCellDef> Foto </md-header-cell>
-      <md-cell *mdCellDef="let element"> <img height="50" style="border-radius: 50%;object-fit: cover;" src='{{element.foto}}' /> </md-cell>
+      <md-cell *mdCellDef="let element"> <img height="50" width="50" style="border-radius: 50%;object-fit: cover;" src='{{element.foto}}' /> </md-cell>
     </ng-container>
 
     <ng-container mdColumnDef="Nome">
@@ -36,8 +36,8 @@
     </ng-container>
 
     <ng-container mdColumnDef="Acoes">
-      <md-header-cell class="res400" *mdHeaderCellDef> Ações </md-header-cell>
-      <md-cell class="res400" *mdCellDef="let element"> <i class="material-icons" (click)='contactService.selectContact(element);openDialog();$event.stopPropagation()'>mode_edit</i> &nbsp;<i class="material-icons" (click)='remove(element);$event.stopPropagation()'>delete_sweep</i></md-cell>
+      <md-header-cell style="text-align: right;max-width: 70px" *mdHeaderCellDef> Ações </md-header-cell>
+      <md-cell style="text-align: right;max-width: 70px" *mdCellDef="let element"> <i class="material-icons" (click)='contactService.selectContact(element);openDialog();$event.stopPropagation()'>mode_edit</i> &nbsp;<i class="material-icons" (click)='remove(element);$event.stopPropagation()'>delete_sweep</i></md-cell>
     </ng-container>
 
     <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>

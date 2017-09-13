@@ -48,7 +48,7 @@ export class ContatoDialogComponent {
       contacts.unshift(contact);
       this.contactService.updateTable.emit();
     }
-    this.dialogRef.close();
+    this.dialog.close();
   }
 
   isValidForm() {

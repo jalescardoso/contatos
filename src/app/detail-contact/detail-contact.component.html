@@ -20,7 +20,7 @@
 
     </md-form-field>
     <md-form-field class="example-full-width">
-      <input readonly mdInput  [(ngModel)]="contactService.contact && contactService.contact.nascimento"
+      <input readonly mdInput  value="{{contactService.contact && contactService.contact.nascimento | date:'d/m/y'}}"
         placeholder="Data de nascimento">
     </md-form-field>
   </div>
